@@ -1958,6 +1958,11 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
+"@react-native-community/slider@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-3.0.3.tgz#830167fd757ba70ac638747ba3169b2dbae60330"
+  integrity sha512-8IeHfDwJ9/CTUwFs6x90VlobV3BfuPgNLjTgC6dRZovfCWigaZwVNIFFJnHBakK3pW2xErAPwhdvNR4JeNoYbw==
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.2.tgz#858f5c4b48d80778fde4b9d541f27edc0d56488b"
@@ -6740,6 +6745,11 @@ react-native-screens@~2.15.0:
   version "2.15.2"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.2.tgz#a449700e895b462937211ec72ed6f09652758f06"
   integrity sha512-CagNf2APXkVoRlF3Mugr264FbKbrBg9eXUkqhIPVeZB8EsdS8XPrnt99yj/pzmT+yJMBY0dGrjXT8+68WYh6YQ==
+
+react-native-skew-image@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-skew-image/-/react-native-skew-image-1.2.5.tgz#fbe16d4b217f327a764b7954a22c5f00b3fe94a1"
+  integrity sha512-RdpNMvw8+wFnMrpIZZBio5LN1ovVT4N31H09WXOvC0s5qgBM7xFykBshhvLlbNfJh/wsspoPAYnokCx2bLvASg==
 
 react-native-unimodules@~0.12.0:
   version "0.12.0"
