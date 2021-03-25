@@ -1,19 +1,68 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
+
+// Components
 import Range from "./components/Range";
 import Result from "./components/Result";
 import Settings from "./components/Settings";
 
+// ===================================================================================
 export default function App() {
+  // ---------------------------- Variables -------------------------------------
   const [amount, setAmount] = useState(100000);
+  const [maxAmount, setMaxAmount] = useState(200000);
+  const [stepAmount, setStepAmount] = useState(1000);
   const [years, setYears] = useState(8);
   const [rate, setRate] = useState(4);
-  const [monthly, setMonthly] = useState(0);
-  const [cost, setCost] = useState(0);
-  const [currency, setCurrency] = useState("SEK");
+  const [maxRate, setMaxRate] = useState(10);
+  const [minRate, setMinRate] = useState(2);
+  const [monthly, setMonthly] = useState(0); // monthly paiement
+  const [cost, setCost] = useState(0); // Total cost for credit
+  const [currency, setCurrency] = useState("SEK"); // SEK, €, $
+  const [loanType, setLoanType] = useState("Personal"); // Personal, Home
   const [displaySettings, setDisplaySetings] = useState(false);
 
+  // --------------------------- Variables updating -------------------------------
+  // Change range details regarding settings
+  useEffect(() => {
+    if (currency !== "SEK") {
+      setYears(8);
+      if (loanType === "Personal") {
+        setMaxAmount(20000);
+        setAmount(10000);
+        setStepAmount(100);
+        setMinRate(2);
+        setMaxRate(10);
+        setRate(4);
+      } else {
+        setMaxAmount(400000);
+        setAmount(200000);
+        setStepAmount(1000);
+        setMinRate(1);
+        setMaxRate(5);
+        setRate(2);
+      }
+    } else {
+      if (loanType === "Personal") {
+        setMaxAmount(200000);
+        setAmount(100000);
+        setStepAmount(1000);
+        setMinRate(2);
+        setMaxRate(10);
+        setRate(4);
+      } else {
+        setMaxAmount(4000000);
+        setAmount(2000000);
+        setStepAmount(10000);
+        setMinRate(1);
+        setMaxRate(5);
+        setRate(2);
+      }
+    }
+  }, [currency, loanType]);
+
+  // Do the maths when user move slider(s)
   useEffect(() => {
     const realRate = rate / 100;
     const byMonth =
@@ -25,7 +74,9 @@ export default function App() {
     setCost(Math.round(totalCost));
   }, [amount, years, rate]);
 
+  // ----------------------- Rendering -------------------------------------------
   if (!displaySettings) {
+    // Main page
     return (
       <View style={styles.container}>
         <View style={styles.rangeContainer}>
@@ -33,8 +84,8 @@ export default function App() {
             label="Amount"
             unity={currency}
             min={0}
-            max={200000}
-            step={1000}
+            max={maxAmount}
+            step={stepAmount}
             handleChange={setAmount}
             value={amount}
           />
@@ -50,8 +101,8 @@ export default function App() {
           <Range
             label="Rate"
             unity="%"
-            min={2}
-            max={10}
+            min={minRate}
+            max={maxRate}
             step={0.1}
             handleChange={setRate}
             value={rate}
@@ -87,12 +138,15 @@ export default function App() {
       </View>
     );
   } else {
+    // Setting page
     return (
       <View style={styles.container}>
         <Settings
           handleBack={setDisplaySetings}
           currency={currency}
           setCurrency={setCurrency}
+          loanType={loanType}
+          setLoanType={setLoanType}
         />
       </View>
     );

@@ -1,42 +1,70 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-function Item({ content, setCurrency, isActive }) {
-  return (
-    <TouchableOpacity
-      style={[styles.item, isActive && styles.active]}
-      onPress={() => setCurrency(content)}
-    >
-      <Text>{content}</Text>
-    </TouchableOpacity>
-  );
-}
+// Components
+import Item from "./Item";
+import Button from "./Button";
 
-function Settings({ handleBack, currency, setCurrency }) {
+// ===================================================================================
+function Settings({
+  handleBack,
+  currency,
+  setCurrency,
+  loanType,
+  setLoanType,
+}) {
+  // ---------------------------- Variables -------------------------------------
   const currencyChoices = ["SEK", "€", "$"];
+  const loanTypeChoices = ["Personal", "Home"];
+  const languagesChoices = ["Swedish", "English", "French"];
 
+  // ----------------------- Rendering -------------------------------------------
   return (
     <>
       <View>
+        <Text style={styles.reminderText}>
+          *Reminder : Simulations are the result of mathematical calculations
+          and might not reflected reality.
+        </Text>
+      </View>
+
+      <View style={styles.listContainer}>
+        <Text style={styles.listHeader}>Language</Text>
+        <View style={styles.list}>
+          {languagesChoices.map((c) => (
+            <Item
+              key={c}
+              content={c}
+              handlePress={() => {}}
+              isActive={c === ""}
+            />
+          ))}
+        </View>
+        <Text style={styles.listHeader}>Loan type</Text>
+        <View style={styles.list}>
+          {loanTypeChoices.map((c) => (
+            <Item
+              key={c}
+              content={c}
+              handlePress={setLoanType}
+              isActive={c === loanType}
+            />
+          ))}
+        </View>
         <Text style={styles.listHeader}>Currency</Text>
         <View style={styles.list}>
           {currencyChoices.map((c) => (
             <Item
               key={c}
               content={c}
-              setCurrency={setCurrency}
+              handlePress={setCurrency}
               isActive={c === currency}
             />
           ))}
         </View>
       </View>
 
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => handleBack(false)}
-      >
-        <Text style={styles.backButtonText}>Back</Text>
-      </TouchableOpacity>
+      <Button handleBack={handleBack} />
     </>
   );
 }
@@ -50,35 +78,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  reminderText: {
+    fontSize: 12,
+    padding: 10,
+  },
+  listContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   listHeader: {
     textAlign: "center",
+    marginTop: 30,
+    fontSize: 18,
+    textDecorationLine: "underline",
   },
   list: {
     maxHeight: 300,
     overflow: "scroll",
     display: "flex",
     flexDirection: "row",
-  },
-  item: {
-    margin: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    backgroundColor: "#ddd",
-    borderRadius: 5,
-  },
-  backButton: {
-    width: 70,
-    height: 30,
-    backgroundColor: "#0a1868",
-    borderRadius: 5,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  backButtonText: {
-    color: "#f1a4a9",
-  },
-  active: {
-    backgroundColor: "#f1a4a9",
   },
 });
