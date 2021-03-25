@@ -7,9 +7,12 @@ import Range from "./components/Range";
 import Result from "./components/Result";
 import Settings from "./components/Settings";
 
+import dictionaries from "./dictionaries.json";
+
 // ===================================================================================
 export default function App() {
   // ---------------------------- Variables -------------------------------------
+  const [dictionary, setDictionary] = useState(dictionaries.English);
   const [amount, setAmount] = useState(100000);
   const [maxAmount, setMaxAmount] = useState(200000);
   const [stepAmount, setStepAmount] = useState(1000);
@@ -20,7 +23,7 @@ export default function App() {
   const [monthly, setMonthly] = useState(0); // monthly paiement
   const [cost, setCost] = useState(0); // Total cost for credit
   const [currency, setCurrency] = useState("SEK"); // SEK, €, $
-  const [loanType, setLoanType] = useState("Personal"); // Personal, Home
+  const [loanType, setLoanType] = useState(dictionary.personal); // Personal, Home
   const [displaySettings, setDisplaySetings] = useState(false);
 
   // --------------------------- Variables updating -------------------------------
@@ -28,7 +31,7 @@ export default function App() {
   useEffect(() => {
     if (currency !== "SEK") {
       setYears(8);
-      if (loanType === "Personal") {
+      if (loanType === dictionary.personal) {
         setMaxAmount(20000);
         setAmount(10000);
         setStepAmount(100);
@@ -44,7 +47,7 @@ export default function App() {
         setRate(2);
       }
     } else {
-      if (loanType === "Personal") {
+      if (loanType === dictionary.personal) {
         setMaxAmount(200000);
         setAmount(100000);
         setStepAmount(1000);
@@ -74,6 +77,36 @@ export default function App() {
     setCost(Math.round(totalCost));
   }, [amount, years, rate]);
 
+  // Deal with language changes
+  useEffect(() => {
+    if (
+      loanType === "Personal" ||
+      loanType === "Privat" ||
+      loanType === "Personnel"
+    ) {
+      setLoanType(dictionary.personal);
+    }
+    if (
+      loanType === "Home" ||
+      loanType === "Bolån" ||
+      loanType === "Immobilier"
+    ) {
+      setLoanType(dictionary.home);
+    }
+  }, [dictionary]);
+
+  const handleChangeLanguage = (lang) => {
+    if (lang === "Anglais" || lang === "Engelska" || lang === "English") {
+      setDictionary(dictionaries.English);
+    }
+    if (lang === "Francais" || lang === "Franska" || lang === "French") {
+      setDictionary(dictionaries.French);
+    }
+    if (lang === "Suédois" || lang === "Svenska" || lang === "Swedish") {
+      setDictionary(dictionaries.Swedish);
+    }
+  };
+
   // ----------------------- Rendering -------------------------------------------
   if (!displaySettings) {
     // Main page
@@ -81,7 +114,7 @@ export default function App() {
       <View style={styles.container}>
         <View style={styles.rangeContainer}>
           <Range
-            label="Amount"
+            label={dictionary.amount}
             unity={currency}
             min={0}
             max={maxAmount}
@@ -90,8 +123,8 @@ export default function App() {
             value={amount}
           />
           <Range
-            label="Time"
-            unity="years"
+            label={dictionary.time}
+            unity={dictionary.years}
             min={1}
             max={20}
             step={1}
@@ -99,7 +132,7 @@ export default function App() {
             value={years}
           />
           <Range
-            label="Rate"
+            label={dictionary.rate}
             unity="%"
             min={minRate}
             max={maxRate}
@@ -114,12 +147,12 @@ export default function App() {
             right={false}
             value={monthly}
             label=""
-            unity={`${currency} / Month`}
+            unity={`${currency} / ${dictionary.month}`}
           />
           <Result
             right={true}
             value={cost}
-            label="Total Cost"
+            label={dictionary.totalCost}
             unity={currency}
           />
         </View>
@@ -147,6 +180,8 @@ export default function App() {
           setCurrency={setCurrency}
           loanType={loanType}
           setLoanType={setLoanType}
+          dictionary={dictionary}
+          handleChangeLanguage={handleChangeLanguage}
         />
       </View>
     );

@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 // ===================================================================================
-function Button({ handleBack }) {
+function Button({ handleBack, content }) {
   return (
     <TouchableOpacity
       style={styles.backButton}
       onPress={() => handleBack(false)}
     >
-      <Text style={styles.backButtonText}>Back</Text>
+      <Text style={styles.backButtonText}>{content}</Text>
     </TouchableOpacity>
   );
 }
