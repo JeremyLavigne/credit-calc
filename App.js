@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import Range from "./components/Range";
 import Result from "./components/Result";
+import Settings from "./components/Settings";
 
 export default function App() {
   const [amount, setAmount] = useState(100000);
@@ -10,6 +11,7 @@ export default function App() {
   const [rate, setRate] = useState(4);
   const [monthly, setMonthly] = useState(0);
   const [cost, setCost] = useState(0);
+  const [currency, setCurrency] = useState("SEK");
   const [displaySettings, setDisplaySetings] = useState(false);
 
   useEffect(() => {
@@ -26,37 +28,49 @@ export default function App() {
   if (!displaySettings) {
     return (
       <View style={styles.container}>
-        <Range
-          label="Amount"
-          unity="SEK"
-          min={0}
-          max={200000}
-          step={1000}
-          handleChange={setAmount}
-          value={amount}
-        />
-        <Range
-          label="Time"
-          unity="years"
-          min={1}
-          max={20}
-          step={1}
-          handleChange={setYears}
-          value={years}
-        />
-        <Range
-          label="Rate"
-          unity="%"
-          min={2}
-          max={10}
-          step={0.1}
-          handleChange={setRate}
-          value={rate}
-        />
+        <View style={styles.rangeContainer}>
+          <Range
+            label="Amount"
+            unity={currency}
+            min={0}
+            max={200000}
+            step={1000}
+            handleChange={setAmount}
+            value={amount}
+          />
+          <Range
+            label="Time"
+            unity="years"
+            min={1}
+            max={20}
+            step={1}
+            handleChange={setYears}
+            value={years}
+          />
+          <Range
+            label="Rate"
+            unity="%"
+            min={2}
+            max={10}
+            step={0.1}
+            handleChange={setRate}
+            value={rate}
+          />
+        </View>
 
         <View style={styles.results}>
-          <Result right={false} value={monthly} label="" unity="SEK / Month" />
-          <Result right={true} value={cost} label="Total Cost" unity="SEK" />
+          <Result
+            right={false}
+            value={monthly}
+            label=""
+            unity={`${currency} / Month`}
+          />
+          <Result
+            right={true}
+            value={cost}
+            label="Total Cost"
+            unity={currency}
+          />
         </View>
 
         <TouchableOpacity
@@ -75,9 +89,11 @@ export default function App() {
   } else {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setDisplaySetings(false)}>
-          <Text>Back</Text>
-        </TouchableOpacity>
+        <Settings
+          handleBack={setDisplaySetings}
+          currency={currency}
+          setCurrency={setCurrency}
+        />
       </View>
     );
   }
@@ -88,8 +104,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
+  },
+  rangeContainer: {
     width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 50,
   },
   results: {
     display: "flex",
@@ -97,7 +119,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   settings: {
-    marginTop: 30,
+    marginBottom: 30,
+    marginTop: 10,
     width: 40,
     height: 40,
   },
