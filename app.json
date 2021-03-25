@@ -1,0 +1,12 @@
+{
+  "name": "loan-calc-native",
+  "displayName": "loan-calc-native",
+  "expo": {
+    "name": "loan-calc-native",
+    "slug": "loan-calc-native",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
