@@ -8,7 +8,7 @@ import TutoPage2 from "./TutoPage2";
 import TutoPage3 from "./TutoPage3";
 
 // ===================================================================================
-function Tutorial({ dictionary, handleChangeLanguage, setFirstUse }) {
+function Tutorial({ dictionary, handleChangeLanguage, handleEndTuto }) {
   const [activePage, setActivePage] = useState(1);
 
   return (
@@ -37,10 +37,7 @@ function Tutorial({ dictionary, handleChangeLanguage, setFirstUse }) {
           />
         )}
         {activePage === 3 && (
-          <Button
-            handlePress={() => setFirstUse(false)}
-            content={dictionary.gotIt}
-          />
+          <Button handlePress={handleEndTuto} content={dictionary.gotIt} />
         )}
       </View>
     </View>

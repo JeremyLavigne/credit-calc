@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Components
 import Range from "./components/Range";
@@ -25,10 +26,23 @@ export default function App() {
   const [cost, setCost] = useState(0); // Total cost for credit
   const [currency, setCurrency] = useState("SEK"); // SEK, €, $
   const [loanType, setLoanType] = useState(dictionary.personal); // Personal, Home
-  const [firstUse, setFirstUse] = useState(true);
+  const [firstUse, setFirstUse] = useState(false);
   const [displaySettings, setDisplaySetings] = useState(false);
 
   // --------------------------- Variables updating -------------------------------
+
+  // Check local storage if first use of application
+  useEffect(() => {
+    AsyncStorage.getItem("firstUse")
+      .then((value) => {
+        if (value === null) {
+          setFirstUse(true);
+        }
+        // else variable stay to false
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   // Change range details regarding settings
   useEffect(() => {
     if (currency !== "SEK") {
@@ -109,6 +123,14 @@ export default function App() {
     }
   };
 
+  // Write in local storage when tuto in first visit has been done
+  const handleEndTuto = () => {
+    setFirstUse(false);
+    AsyncStorage.setItem("firstUse", "done").then(() =>
+      console.log("first use done, stored.")
+    );
+  };
+
   // ----------------------- Rendering -------------------------------------------
   if (!displaySettings) {
     // Main page
@@ -118,7 +140,7 @@ export default function App() {
           <Tutorial
             dictionary={dictionary}
             handleChangeLanguage={handleChangeLanguage}
-            setFirstUse={setFirstUse}
+            handleEndTuto={handleEndTuto}
           />
         )}
         <View style={styles.rangeContainer}>
