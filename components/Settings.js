@@ -67,7 +67,7 @@ function Settings({
         </View>
       </View>
 
-      <Button handleBack={handleBack} content={dictionary.back} />
+      <Button handlePress={handleBack} content={dictionary.back} />
     </>
   );
 }

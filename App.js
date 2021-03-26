@@ -6,13 +6,14 @@ import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import Range from "./components/Range";
 import Result from "./components/Result";
 import Settings from "./components/Settings";
+import Tutorial from "./components/Tutorial";
 
 import dictionaries from "./utils/dictionaries.json";
 
 // ===================================================================================
 export default function App() {
   // ---------------------------- Variables -------------------------------------
-  const [dictionary, setDictionary] = useState(dictionaries.Swedish);
+  const [dictionary, setDictionary] = useState(dictionaries.English);
   const [amount, setAmount] = useState(100000);
   const [maxAmount, setMaxAmount] = useState(200000);
   const [stepAmount, setStepAmount] = useState(1000);
@@ -113,6 +114,13 @@ export default function App() {
     // Main page
     return (
       <View style={styles.container}>
+        {firstUse && (
+          <Tutorial
+            dictionary={dictionary}
+            handleChangeLanguage={handleChangeLanguage}
+            setFirstUse={setFirstUse}
+          />
+        )}
         <View style={styles.rangeContainer}>
           <Range
             label={dictionary.amount}
@@ -158,15 +166,18 @@ export default function App() {
           />
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => setDisplaySetings(true)}
-        >
-          <Image
-            source={require("./images/settings.png")}
-            style={styles.settings}
-          />
-        </TouchableOpacity>
+        {!firstUse && (
+          // Prevent click during tutorial
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() => setDisplaySetings(true)}
+          >
+            <Image
+              source={require("./images/settings.png")}
+              style={styles.settings}
+            />
+          </TouchableOpacity>
+        )}
 
         <StatusBar style="auto" />
       </View>
@@ -176,7 +187,7 @@ export default function App() {
     return (
       <View style={styles.container}>
         <Settings
-          handleBack={setDisplaySetings}
+          handleBack={() => setDisplaySetings(false)}
           currency={currency}
           setCurrency={setCurrency}
           loanType={loanType}

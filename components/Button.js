@@ -2,13 +2,10 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 // ===================================================================================
-function Button({ handleBack, content }) {
+function Button({ handlePress, content }) {
   return (
-    <TouchableOpacity
-      style={styles.backButton}
-      onPress={() => handleBack(false)}
-    >
-      <Text style={styles.backButtonText}>{content}</Text>
+    <TouchableOpacity style={styles.button} onPress={handlePress}>
+      <Text style={styles.buttonText}>{content}</Text>
     </TouchableOpacity>
   );
 }
@@ -16,7 +13,7 @@ function Button({ handleBack, content }) {
 export default Button;
 
 const styles = StyleSheet.create({
-  backButton: {
+  button: {
     width: 70,
     height: 30,
     backgroundColor: "#0a1868",
@@ -24,8 +21,10 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    marginRight: 10,
+    marginLeft: 10,
   },
-  backButtonText: {
+  buttonText: {
     color: "#f1a4a9",
   },
 });

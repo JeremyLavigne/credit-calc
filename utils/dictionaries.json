@@ -16,7 +16,20 @@
     "personal": "Privat",
     "home": "Bolån",
     "currency": "Valuta",
-    "back": "Tillbaka"
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "previous": "Tillbaka",
+    "gotIt": "OK",
+    "welcome": "Välkommen",
+    "intro": "Den här appen är en enkel räknare för att uppskatta hypotetiska månatliga utbetalningar om önskat belopp för ett lån.",
+    "pickLang": "Välj ditt språk",
+    "tutoPage2": "Använd skjutreglagen för att uppskatta :",
+    "tutoPage2Li1": "Den önskade mängden",
+    "tutoPage2Li2": "Lånets löptid",
+    "tutoPage2Li3": "räntan",
+    "tutoPage3": "Få omedelbara resultat :",
+    "tutoPage3Li1": "Månatliga betalningar",
+    "tutoPage3Li2": "Verklig kostnad för ditt lån (vad du betalar utöver återbetalningen av lånet)"
   },
   "English": {
     "name": "English",
@@ -35,7 +48,20 @@
     "personal": "Personal",
     "home": "Home",
     "currency": "Currency",
-    "back": "Back"
+    "back": "Back",
+    "next": "Next",
+    "previous": "Prev",
+    "gotIt": "Got it",
+    "welcome": "Welcome",
+    "intro": "This app is a simple calculator to estimate hypotheticals monthly payments regarding the desired amount for a loan.",
+    "pickLang": "Pick a language",
+    "tutoPage2": "Use the sliders to estimate :",
+    "tutoPage2Li1": "The desired amount",
+    "tutoPage2Li2": "The term of the loan",
+    "tutoPage2Li3": "The loan rate",
+    "tutoPage3": "Get immediate results :",
+    "tutoPage3Li1": "Monthly payments",
+    "tutoPage3Li2": "Real cost of your loan (what you pay in addition to the loan repayment)"
   },
   "French": {
     "name": "French",
@@ -54,6 +80,19 @@
     "personal": "Personnel",
     "home": "Immobilier",
     "currency": "Devise",
-    "back": "Retour"
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Retour",
+    "gotIt": "OK",
+    "welcome": "Bienvenue",
+    "intro": "Cette application est une simple calculette pour estimer vos mesualités en fonction du montant emprunté.",
+    "pickLang": "Choisissez une langue",
+    "tutoPage2": "Utilisez les sliders pour estimer :",
+    "tutoPage2Li1": "Le montant désiré",
+    "tutoPage2Li2": "La durée du prêt",
+    "tutoPage2Li3": "Le taux du prêt",
+    "tutoPage3": "Resultats immédiats :",
+    "tutoPage3Li1": "Mensualités",
+    "tutoPage3Li2": "Coût réel du prêt (ce que vous payez en plus du remboursement du prêt)"
   }
 }
