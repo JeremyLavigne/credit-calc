@@ -7,12 +7,12 @@ import Range from "./components/Range";
 import Result from "./components/Result";
 import Settings from "./components/Settings";
 
-import dictionaries from "./dictionaries.json";
+import dictionaries from "./utils/dictionaries.json";
 
 // ===================================================================================
 export default function App() {
   // ---------------------------- Variables -------------------------------------
-  const [dictionary, setDictionary] = useState(dictionaries.English);
+  const [dictionary, setDictionary] = useState(dictionaries.Swedish);
   const [amount, setAmount] = useState(100000);
   const [maxAmount, setMaxAmount] = useState(200000);
   const [stepAmount, setStepAmount] = useState(1000);
@@ -24,6 +24,7 @@ export default function App() {
   const [cost, setCost] = useState(0); // Total cost for credit
   const [currency, setCurrency] = useState("SEK"); // SEK, €, $
   const [loanType, setLoanType] = useState(dictionary.personal); // Personal, Home
+  const [firstUse, setFirstUse] = useState(true);
   const [displaySettings, setDisplaySetings] = useState(false);
 
   // --------------------------- Variables updating -------------------------------

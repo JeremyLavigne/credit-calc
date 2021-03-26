@@ -1,16 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+import formatNumber from "../utils/formatNumber";
+
 // ===================================================================================
 function Result({ right, value, label, unity }) {
   return (
     <View style={[styles.result, right && styles.resultRight]}>
       <Text style={[styles.resultText, right && styles.resultTextRight]}>
         {label}
-        <Text style={styles.value}>{!right && value}</Text>
+        <Text style={styles.value}>{!right && formatNumber(value)}</Text>
       </Text>
       <Text style={[styles.resultText, right && styles.resultTextRight]}>
-        <Text style={styles.value}>{right && value}</Text> {unity}
+        <Text style={styles.value}>{right && formatNumber(value)}</Text> {unity}
       </Text>
     </View>
   );

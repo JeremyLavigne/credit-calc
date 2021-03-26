@@ -2,12 +2,15 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Slider from "@react-native-community/slider";
 
+import formatNumber from "../utils/formatNumber";
+
 function Range({ label, unity, min, max, step, handleChange, value }) {
   return (
     <>
       <View style={styles.label}>
         <Text style={styles.labelText}>
-          {label} : <Text style={styles.value}>{value}</Text> {unity}
+          {label} : <Text style={styles.value}>{formatNumber(value)}</Text>{" "}
+          {unity}
         </Text>
       </View>
       <Slider
