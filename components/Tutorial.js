@@ -49,12 +49,10 @@ export default Tutorial;
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    width: "80%",
-    height: "80%",
-    backgroundColor: "#ccc",
-    marginTop: 30,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#eee",
     zIndex: 1,
-    borderRadius: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",

@@ -14,8 +14,8 @@ export default Button;
 
 const styles = StyleSheet.create({
   button: {
-    width: 70,
-    height: 30,
+    width: 90,
+    height: 40,
     backgroundColor: "#0a1868",
     borderRadius: 5,
     display: "flex",
@@ -26,5 +26,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#f1a4a9",
+    fontSize: 18,
   },
 });

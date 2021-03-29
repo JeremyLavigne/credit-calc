@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   settings: {
     marginBottom: 30,
     marginTop: 10,
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
   },
 });

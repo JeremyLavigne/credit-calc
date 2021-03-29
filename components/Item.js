@@ -8,7 +8,7 @@ function Item({ content, handlePress, isActive }) {
       style={[styles.item, isActive && styles.active]}
       onPress={() => handlePress(content)}
     >
-      <Text>{content}</Text>
+      <Text style={styles.text}>{content}</Text>
     </TouchableOpacity>
   );
 }
@@ -22,8 +22,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     backgroundColor: "#ddd",
     borderRadius: 5,
+    borderColor: "black",
+    borderWidth: 1,
+    elevation: 5,
   },
   active: {
     backgroundColor: "#f1a4a9",
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "700",
   },
 });

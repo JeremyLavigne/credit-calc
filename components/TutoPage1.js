@@ -36,11 +36,11 @@ export default TutoPage1;
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
   },
   welcome: {
-    fontSize: 22,
+    fontSize: 26,
     marginBottom: 20,
     textAlign: "center",
     color: "#0a1868",
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
     fontSize: 18,
+    fontWeight: "700",
   },
   list: {
     maxHeight: 300,

@@ -93,8 +93,9 @@ const styles = StyleSheet.create({
   listHeader: {
     textAlign: "center",
     marginTop: 30,
-    fontSize: 18,
-    textDecorationLine: "underline",
+    marginBottom: 5,
+    fontSize: 20,
+    fontWeight: "700",
   },
   list: {
     maxHeight: 300,
